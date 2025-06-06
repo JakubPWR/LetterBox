@@ -1,0 +1,11 @@
+.footer-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4B352A;
+  height: 60px; /* Or any fixed height */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: black;
+}

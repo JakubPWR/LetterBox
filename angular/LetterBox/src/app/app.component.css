@@ -1,0 +1,71 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.main-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-pink-base);
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "left-panel body"
+    "footer footer";
+  grid-template-rows: 1fr 6fr 0.5fr;
+  grid-template-columns: 1fr 3fr; /* Default (with panel) */
+  gap: 0;
+}
+
+/* When the left panel is visible */
+.main-wrapper.with-left-panel {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "left-panel body"
+    "footer footer";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 6fr 0.5fr;
+}
+
+/* When the left panel is hidden */
+.main-wrapper.without-left-panel {
+  grid-template-columns: 0fr 1fr; /* Collapse the left panel smoothly */
+}
+
+/* Component grid areas */
+app-header {
+  grid-area: header;
+  position: fixed;
+  width: 100%;
+  background-color: var(--color-maroon-deep);
+}
+
+app-left-panel {
+  grid-area: left-panel;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  width: 100%; /* Will collapse due to grid-column shrinking */
+  opacity: 1;
+}
+
+app-left-panel[hidden] {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+app-body {
+  grid-area: body;
+  background-color: var(--color-pink-base);
+  height: 100%;
+}
+
+app-footer {
+  grid-area: footer;
+  background-color: var(--color-maroon-deep);
+}

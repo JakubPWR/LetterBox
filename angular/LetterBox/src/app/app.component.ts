@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
-import {HeroesComponent} from './heroes/heroes.component';
+import {Component, Input} from '@angular/core';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {LeftPanelComponent} from './left-panel/left-panel.component';
+import {BodyComponent} from './body/body.component';
+import {NgClass, NgIf} from '@angular/common';
+import {signal} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [HeroesComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    FooterComponent,
+    HeaderComponent,
+    LeftPanelComponent,
+    BodyComponent,
+    NgIf,
+    NgClass
+  ],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'LetterBox';
+  isPanelVisible = signal(false);
+  changePanelVisibility(value: boolean)
+  {
+    if (typeof value === "boolean") {
+      this.isPanelVisible.set(value);
+    }
+  }
 }

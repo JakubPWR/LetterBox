@@ -1,0 +1,32 @@
+.movie-container
+{
+  background-color: var(--color-pink-dark);
+  display: grid;
+  grid-template-areas:
+    "image"
+    "title"
+    "buttons";
+  grid-template-rows: 4fr 1fr 1fr;
+  justify-content: center;
+  width: 100%;
+}
+.movie-image {
+  display: flex;
+  grid-area: image;
+}
+
+.movie-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: title;
+}
+
+.movie-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  grid-area: buttons;
+}
+
