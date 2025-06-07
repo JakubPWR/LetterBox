@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "LetterBox": {
+    "letterbox": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/letter-box",
+            "outputPath": "dist/letterbox",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "LetterBox:build:production"
+              "buildTarget": "letterbox:build:production"
             },
             "development": {
-              "buildTarget": "LetterBox:build:development"
+              "buildTarget": "letterbox:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,6 +99,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "b07d5422-7552-45b0-9635-9aac289759e8"
   }
 }

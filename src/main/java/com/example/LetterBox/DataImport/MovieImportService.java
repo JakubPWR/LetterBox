@@ -27,6 +27,10 @@ public class MovieImportService {
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
             String[] line;
             boolean isFirstLine = true;
+            if (movieRepository.count() > 0) {
+                System.out.println("Movies already exist in the database. Import aborted.");
+                return;
+            }
 
             while ((line = reader.readNext()) != null) {
                 if (isFirstLine) {

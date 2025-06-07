@@ -1,0 +1,33 @@
+.root-display
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: blueviolet;
+}
+.body-container
+{
+  flex: 4;
+  background-color: blueviolet;
+  width: 100%;
+  margin-top: 3.75%;
+}
+.header-container
+{
+  flex: 1;
+  background-color: indianred;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 7%;
+}
+.footer-container
+{
+  flex: 1;
+  background-color: blue;
+  width: 100%;
+}

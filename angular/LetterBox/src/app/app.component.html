@@ -1,6 +1,0 @@
-<div [ngClass]="isPanelVisible() ? 'main-wrapper with-left-panel' : 'main-wrapper without-left-panel'">
-  <app-header (changeVisibilityHeader)="changePanelVisibility($event)"></app-header>
-  <app-left-panel [hidden]="!isPanelVisible()"></app-left-panel>
-  <app-body></app-body>
-  <app-footer></app-footer>
-</div>
