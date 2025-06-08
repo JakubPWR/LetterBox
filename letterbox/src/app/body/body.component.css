@@ -1,0 +1,13 @@
+.body-display
+{
+  display: flex;
+  flex-direction: row;
+}
+.body-content
+{
+  flex: 4;
+}
+.body-sidebar
+{
+  flex: 1;
+}

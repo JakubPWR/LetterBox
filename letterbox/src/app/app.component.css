@@ -6,19 +6,20 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: blueviolet;
+  background-color: var(--tertiary-color);
 }
 .body-container
 {
-  flex: 4;
-  background-color: blueviolet;
+  flex: 6;
+  background-color: var(--tertiary-color);
   width: 100%;
   margin-top: 3.75%;
+  overflow-y: auto;
 }
 .header-container
 {
   flex: 1;
-  background-color: indianred;
+  background-color: var(--accent-color);
   width: 100%;
   position: fixed;
   top: 0;
@@ -28,6 +29,10 @@
 .footer-container
 {
   flex: 1;
-  background-color: blue;
+  background-color: var(--neutral-black);
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 7%;
 }

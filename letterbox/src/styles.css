@@ -4,3 +4,32 @@ html, body {
   margin: 0;
   padding: 0;
 }/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #C81D77;       /* Bright magenta-pink */
+  --accent-color: #B81B84;        /* Rich magenta */
+  --highlight-color: #A81990;     /* Deep magenta-purple */
+  --secondary-color: #98179D;     /* Royal purple */
+  --tertiary-color: #8714A9;      /* Darker purple */
+  --shade-color: #7712B6;         /* Deep violet */
+  --deep-color: #6710C2;
+  --neutral-black: #212020;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+
+  --font-size-h1: 3rem;         /* Main heading */
+  --font-size-h2: 2.25rem;      /* Subheadings */
+  --font-size-h3: 1.75rem;
+  --font-size-body: 1rem;       /* Regular text */
+  --font-size-small: 0.875rem;  /* Small text */
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;/* Dark violet-indigo */
+  --text-primary: #F8F8F8;         /* High contrast for dark backgrounds */
+  --text-secondary: #D1C7D8;       /* Softer text (descriptive/labels) */
+  --text-accent: var(--primary-color); /* Use for links or buttons */
+  --text-heading: #FFFFFF;         /* Headings on dark backgrounds */
+  --text-muted: #A38BA8;           /* For less prominent text */
+}
+

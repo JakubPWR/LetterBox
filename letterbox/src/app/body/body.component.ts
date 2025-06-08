@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, Input, signal} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-body',
-  imports: [],
   templateUrl: './body.component.html',
-  styleUrl: './body.component.css'
+  styleUrls: ['./body.component.css'],
+  imports: [CommonModule]
 })
 export class BodyComponent {
-
+  @Input() leftIsShown = false;
 }
