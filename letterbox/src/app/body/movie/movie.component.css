@@ -1,0 +1,40 @@
+.movie-container
+{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  width: 30vw;
+  height: 40vh;
+  border-width: thick;
+  border-color: var(--neutral-black);
+  border-style: solid;
+}
+.movie-image
+{
+  flex: 4;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: thick solid var(--neutral-black);
+}
+.movie-title
+{
+  display: flex;
+  font: var(--font-weight-bold);
+  color: var(--text-primary);
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-bottom: thick solid var(--neutral-black);
+}
+.movie-buttons
+{
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-color);
+}
