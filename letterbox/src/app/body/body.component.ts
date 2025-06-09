@@ -1,4 +1,4 @@
-import {Component, Input, signal} from '@angular/core';
+import {Component, ElementRef, Input, signal, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MovieComponent} from './movie/movie.component';
 

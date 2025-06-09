@@ -1,5 +1,8 @@
 <div class="root-display">
   <app-header class="header-container" (showLeftEvent)="onShowLeft($event)"></app-header>
-  <app-body class="body-container" [leftIsShown]="leftIsShown"></app-body>
+  <app-body
+    #bodyContainer
+    class="body-container"
+    [leftIsShown]="leftIsShown" ></app-body>
   <div class="footer-container" [class.visible]="footerVisible">3</div>
 </div>
