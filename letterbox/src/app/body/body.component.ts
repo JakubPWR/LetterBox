@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, signal, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MovieComponent} from './movie/movie.component';
+import {MovieModel} from '../../models/movieModel';
 
 @Component({
   selector: 'app-body',
@@ -10,4 +11,5 @@ import {MovieComponent} from './movie/movie.component';
 })
 export class BodyComponent {
   @Input() leftIsShown = false;
+  @Input() movies: MovieModel[] = [];
 }

@@ -17,12 +17,14 @@
   justify-content: center;
   align-items: center;
   border-bottom: thick solid var(--neutral-black);
+  box-sizing: border-box;  /* Add this */
 }
 .movie-title
 {
   display: flex;
-  font: var(--font-weight-bold);
   color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -38,3 +40,4 @@
   align-items: center;
   background-color: var(--accent-color);
 }
+

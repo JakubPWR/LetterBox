@@ -1,7 +1,9 @@
-import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, signal, ViewChild} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
+import {MovieModel} from '../models/movieModel';
+import {MovieRepository} from '../repositories/movieRepository';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,10 @@ import { HeaderComponent } from './header/header.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private movieRepository: MovieRepository) {}
   leftIsShown = false;
   footerVisible = false;
+  movies = signal<MovieModel[]>([]);
 
   onShowLeft(event: boolean) {
     this.leftIsShown = event;
@@ -19,8 +23,9 @@ export class AppComponent {
 
   @ViewChild('bodyContainer', { static: false, read: ElementRef }) bodyContainer!: ElementRef;
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
     this.bodyContainer.nativeElement.addEventListener('scroll', this.onBodyScroll.bind(this));
+    this.movies.set([...this.movies(),...await this.movieRepository.getMovies()]);
   }
 
   onBodyScroll(): void {
@@ -31,4 +36,5 @@ export class AppComponent {
 
     this.footerVisible = scrollTop + offsetHeight >= scrollHeight - 10; // z tolerancją
   }
+
 }
