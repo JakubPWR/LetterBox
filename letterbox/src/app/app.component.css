@@ -25,14 +25,20 @@
   top: 0;
   left: 0;
   height: 7%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: thick solid var(--neutral-black);
 }
-.footer-container
-{
+.footer-container {
   flex: 1;
   background-color: var(--neutral-black);
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   height: 7%;
+  display: none; /* Ukryty domyślnie */
 }
+.footer-container.visible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
