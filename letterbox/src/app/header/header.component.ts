@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { MovieRepository } from '../../repositories/movieRepository';
 import {MovieModel} from '../../models/movieModel';
 
@@ -13,14 +13,23 @@ export class HeaderComponent {
   @Output() showLeftEvent = new EventEmitter<boolean>();
 
   leftIsShown = false;
+  @Output() changePageEvent = new EventEmitter<number>();
+  pageNumber: number = 0;
 
   showLeft() {
     this.leftIsShown = !this.leftIsShown;
     this.showLeftEvent.emit(this.leftIsShown);
   }
-  async getMovies():Promise<MovieModel[]>
+  changePage(number : number)
   {
-    const movies = await this.movieRepository.getMovies();
-    return movies;
+    if(this.pageNumber == 0 && number == -1)
+    {
+      return;
+    }
+    else
+    {
+      this.pageNumber += number;
+      this.changePageEvent.emit(this.pageNumber);
+    }
   }
 }

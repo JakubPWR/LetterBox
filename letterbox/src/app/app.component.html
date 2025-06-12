@@ -1,5 +1,7 @@
 <div class="root-display">
-  <app-header class="header-container" (showLeftEvent)="onShowLeft($event)"></app-header>
+  <app-header class="header-container"
+              (showLeftEvent)="onShowLeft($event)"
+              (changePageEvent)="onChangePage($event)"></app-header>
   <app-body
     #bodyContainer
     class="body-container"

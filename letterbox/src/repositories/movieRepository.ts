@@ -9,8 +9,8 @@ export class MovieRepository {
 
   constructor(private movieServices: MovieServices) {}
 
-  async getMovies(): Promise<MovieModel[]> {
-    const movies: MovieModel[] = await this.movieServices.getMovies();
+  async getMovies(pageNumber:number): Promise<MovieModel[]> {
+    const movies: MovieModel[] = await this.movieServices.getMovies(pageNumber);
     return movies;
   }
 }
