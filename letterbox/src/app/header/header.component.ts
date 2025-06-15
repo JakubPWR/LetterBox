@@ -1,12 +1,16 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { MovieRepository } from '../../repositories/movieRepository';
 import {MovieModel} from '../../models/movieModel';
+import {SearchBarComponent} from './search-bar/search-bar.component';
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  imports: [
+    SearchBarComponent
+  ]
 })
 export class HeaderComponent {
   constructor(private movieRepository: MovieRepository) {}
