@@ -1,9 +1,18 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, Output, signal, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  signal,
+  ViewChild
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
-import {MovieModel} from '../models/movieModel';
-import {MovieRepository} from '../repositories/movieRepository';
+import { MovieModel } from '../models/movieModel';
+import { MovieServices } from '../services/movieServices';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +21,8 @@ import {MovieRepository} from '../repositories/movieRepository';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private movieRepository: MovieRepository) {}
+  constructor(private movieServices: MovieServices) {}
+
   leftIsShown = false;
   footerVisible = false;
   movies = signal<MovieModel[]>([]);
@@ -21,17 +31,20 @@ export class AppComponent {
   onShowLeft(event: boolean) {
     this.leftIsShown = event;
   }
-  async onChangePage(event: number)
-  {
+
+  async onChangePage(event: number) {
     this.pageNumber.set(event);
-    this.movies.set(await this.movieRepository.getMovies(this.pageNumber()));
+    this.movies.set(await this.movieServices.getMovies(this.pageNumber()));
   }
 
   @ViewChild('bodyContainer', { static: false, read: ElementRef }) bodyContainer!: ElementRef;
 
   async ngAfterViewInit(): Promise<void> {
     this.bodyContainer.nativeElement.addEventListener('scroll', this.onBodyScroll.bind(this));
-    this.movies.set([...this.movies(),...await this.movieRepository.getMovies(this.pageNumber())]);
+    this.movies.set([
+      ...this.movies(),
+      ...await this.movieServices.getMovies(this.pageNumber())
+    ]);
   }
 
   onBodyScroll(): void {
@@ -42,5 +55,4 @@ export class AppComponent {
 
     this.footerVisible = scrollTop + offsetHeight >= scrollHeight - 10; // z tolerancją
   }
-
 }
