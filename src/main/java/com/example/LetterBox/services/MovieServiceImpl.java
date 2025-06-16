@@ -24,12 +24,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getMovieByName(String name) {
-        return movieRepository.findByTitleIgnoreCase(name);
-    }
-
-    @Override
-    public CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName) {
-        return movieRepository.findMovieByTitleAsync(movieName);
+    public CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName, int limit) {
+        return movieRepository.findMovieByTitleAsync(movieName, limit);
     }
 }

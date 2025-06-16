@@ -9,6 +9,4 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long>, MovieRepositoryCustom {
 
     List<Movie> findAllBy(Pageable pageable);
-
-    Movie findByTitleIgnoreCase(String title);
 }

@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public interface MovieRepositoryCustom {
-    CompletableFuture<List<Movie>> findMovieByTitleAsync(String title);
+    CompletableFuture<List<Movie>> findMovieByTitleAsync(String title, int limit);
 }

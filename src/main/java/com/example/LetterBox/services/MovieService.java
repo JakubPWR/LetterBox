@@ -8,7 +8,5 @@ import java.util.concurrent.CompletableFuture;
 public interface MovieService {
     List<Movie> getMoviesByPage(int page);
 
-    Movie getMovieByName(String name);
-
-    CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName);
+    CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName, int limit);
 }

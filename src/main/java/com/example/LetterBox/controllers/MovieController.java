@@ -31,8 +31,8 @@ public class MovieController {
         return movieService.getMoviesByPage(pageNumber);
     }
 
-    @GetMapping("movie/name/{name}")
-    public CompletableFuture<List<Movie>> getMoviesByName(@PathVariable String name) {
-        return movieService.getMovieByNameAsync(name);
+    @GetMapping("movie/name/{name}/{limit}")
+    public CompletableFuture<List<Movie>> getMoviesByName(@PathVariable String name, @PathVariable int limit) {
+        return movieService.getMovieByNameAsync(name,limit);
     }
 }

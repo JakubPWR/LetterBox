@@ -26,11 +26,12 @@ public class MovieRepositoryCustomImpl implements MovieRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public CompletableFuture<List<Movie>> findMovieByTitleAsync(String title) {
+    public CompletableFuture<List<Movie>> findMovieByTitleAsync(String title, int limit) {
         return CompletableFuture.supplyAsync(() -> {
             TypedQuery<Movie> query = entityManager.createQuery(
-                    "SELECT m FROM Movie m WHERE LOWER(m.seriesTitle) LIKE LOWER(CONCAT('%', :title, '%'))", Movie.class);
-            query.setParameter("title", title);
+                    "SELECT m FROM Movie m WHERE LOWER(m.seriesTitle) LIKE LOWER(CONCAT('%', :seriesTitle, '%'))" , Movie.class);
+            query.setParameter("seriesTitle", title);
+            query.setMaxResults(limit);
             return query.getResultList();
         }, executor);
     }
