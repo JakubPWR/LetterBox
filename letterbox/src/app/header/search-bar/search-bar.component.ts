@@ -1,51 +1,74 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, signal, ViewChild} from '@angular/core';
 import axios from 'axios';
 import {MovieModel} from '../../../models/movieModel';
+import { MovieServices } from '../../../services/movieServices';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-search-bar',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
+  constructor(private movieServices: MovieServices) {}
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('resultsList') resultsList!: ElementRef<HTMLUListElement>;
-  dropdownVisible:boolean = false;
-  movieByNameURL:string = "http://localhost:8080/movie/name/";
+  dropdownVisible = signal(false);
   fixedMovieNumber = 10;
+  searchedMovies =signal<MovieModel[]>([]);
 
   // ngAfterViewInit() {
-  //   this.searchInput.nativeElement.addEventListener('input', () => {
-  //     const movieName = this.searchInput.nativeElement.value.trim();
+  //   this.searchInput.nativeElement.addEventListener('input', async () => {
+  //     const movieName = this.searchInput.nativeElement.value;
   //
   //     if (movieName.length < 3) {
   //       this.resultsList.nativeElement.innerHTML = '';
+  //       this.dropdownVisible = false;
   //       return;
   //     }
   //     else
   //     {
-  //       this.fetchResults()
+  //       this.dropdownVisible = true;
+  //       this.searchedMovies.set(await this.movieServices.getMoviesByName(movieName,this.fixedMovieNumber));
+  //       console.log(this.searchedMovies());
+  //       return;
   //     }
   //   });
   // }
+  async onTextChange()
+  {
+      const movieName = this.searchInput.nativeElement.value;
 
-  // async fetchResults(movieName: string): Promise<MovieModel[]> {
-  //   const response = axios.get(`${this.movieByNameURL}/${movieName}/${this.fixedMovieNumber}`);
-  //   return;
-  // }
+      if (movieName.length < 3) {
+        this.resultsList.nativeElement.innerHTML = '';
+        this.dropdownVisible.set(false);
+        let a = this.dropdownVisible();
+        let ab = this.dropdownVisible();
+        return;
+      }
+      else
+      {
+        this.dropdownVisible.set(true);
+        this.searchedMovies.set(await this.movieServices.getMoviesByName(movieName,this.fixedMovieNumber));
+        console.log(this.searchedMovies());
+        this.renderResults();
+        return;
+      }
+  }
 
-  renderResults(results: { name: string }[]): void {
+  renderResults(): void {
     const ul = this.resultsList.nativeElement;
     ul.innerHTML = '';
 
-    results.forEach(item => {
+    this.searchedMovies().forEach(item => {
       const li = document.createElement('li');
-      li.textContent = item.name;
-      li.onclick = () => {
-        this.searchInput.nativeElement.value = item.name;
-        ul.innerHTML = '';
-      };
+      // @ts-ignore
+      li.textContent = item.seriesTitle;
+      // li.onclick = () => {
+      //   this.searchInput.nativeElement.value = item.name;
+      //   ul.innerHTML = '';
+      // };
       ul.appendChild(li);
     });
   }

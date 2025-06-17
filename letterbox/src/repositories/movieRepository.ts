@@ -17,7 +17,7 @@ export class MovieRepository {
   }
   async getMoviesByName(movieName:String, limit:number)
   {
-    const API_ADDRESS = this.API_MOVIE_ADDRESS + 'movie' + `/${movieName}`+`/${limit}`;
+    const API_ADDRESS = this.API_MOVIE_ADDRESS + 'movie/name' + `/${movieName}`+`/${limit}`;
     const response: AxiosResponse = await axios.get(API_ADDRESS);
     const data = response.data;
     const movies: MovieModel[] = data.map((item: Partial<MovieModel>) => new MovieModel(item));
