@@ -13,6 +13,9 @@
 
 .header-left {
   flex: 1;
+  display: flex;             /* Make this a flex container */
+  justify-content: start; /* Now this will work */
+  align-items: center;       /* vertically center contents here too */
 }
 
 .header-right {
@@ -52,4 +55,8 @@
 .header-left-button:active {
   background-color: var(--highlight-color);
   box-shadow: inset 0 2px 4px rgba(168, 25, 144, 0.7);
+}
+app-search-bar {
+  flex: 1;
+  display: flex; /* if needed */
 }

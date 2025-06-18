@@ -1,0 +1,5 @@
+<div class="search-bar">
+  <input (input)="onTextChange()" #searchInput id="search-bar-input" class="search-bar-input" placeholder="movie name">
+  <ul *ngIf="dropdownVisible()" #resultsList id="search-bar-movies-list" class="search-bar-dropdown"></ul>
+  <button (click)="onShowSearchedMovies()" class="default-button">Search</button>
+</div>
