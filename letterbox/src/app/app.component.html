@@ -1,7 +1,8 @@
 <div class="root-display">
   <app-header class="header-container"
               (showLeftEvent)="onShowLeft($event)"
-              (changePageEvent)="onChangePage($event)"></app-header>
+              (changePageEvent)="onChangePage($event)"
+              (showSearchedMovies)="onShowSearchedMovies($event)"></app-header>
   <app-body
     #bodyContainer
     class="body-container"

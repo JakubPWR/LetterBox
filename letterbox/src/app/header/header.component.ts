@@ -20,6 +20,8 @@ export class HeaderComponent {
   @Output() changePageEvent = new EventEmitter<number>();
   pageNumber: number = 0;
 
+  @Output() showSearchedMovies = new EventEmitter<MovieModel[]>;
+
   showLeft() {
     this.leftIsShown = !this.leftIsShown;
     this.showLeftEvent.emit(this.leftIsShown);

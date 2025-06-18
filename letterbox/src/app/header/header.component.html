@@ -3,7 +3,8 @@
       <button (click)="showLeft()" class="header-left-button">Left Panel</button>
     </div>
     <div class="header-right">
-      <app-search-bar></app-search-bar>
+      <app-search-bar
+      (showSearchedMovies)="showSearchedMovies.emit($event)"></app-search-bar>
       <button (click)="changePage(-1)" class="default-button"><-Previous Page</button>
       <button (click)="changePage(1)" class="default-button">Next Page-></button>
     </div>

@@ -55,4 +55,8 @@ export class AppComponent {
 
     this.footerVisible = scrollTop + offsetHeight >= scrollHeight - 10; // z tolerancją
   }
+
+  onShowSearchedMovies($event: MovieModel[]) {
+    this.movies.set($event);
+  }
 }

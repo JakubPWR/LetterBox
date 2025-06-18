@@ -1,4 +1,4 @@
-import {Component, ElementRef, signal, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, signal, ViewChild} from '@angular/core';
 import axios from 'axios';
 import {MovieModel} from '../../../models/movieModel';
 import { MovieServices } from '../../../services/movieServices';
@@ -17,34 +17,27 @@ export class SearchBarComponent {
   dropdownVisible = signal(false);
   fixedMovieNumber = 10;
   searchedMovies =signal<MovieModel[]>([]);
+  @Output() showSearchedMovies = new EventEmitter<MovieModel[]>;
 
-  // ngAfterViewInit() {
-  //   this.searchInput.nativeElement.addEventListener('input', async () => {
-  //     const movieName = this.searchInput.nativeElement.value;
-  //
-  //     if (movieName.length < 3) {
-  //       this.resultsList.nativeElement.innerHTML = '';
-  //       this.dropdownVisible = false;
-  //       return;
-  //     }
-  //     else
-  //     {
-  //       this.dropdownVisible = true;
-  //       this.searchedMovies.set(await this.movieServices.getMoviesByName(movieName,this.fixedMovieNumber));
-  //       console.log(this.searchedMovies());
-  //       return;
-  //     }
-  //   });
-  // }
+  async onShowSearchedMovies()
+  {
+    this.showSearchedMovies.emit(this.searchedMovies());
+  }
+
   async onTextChange()
   {
       const movieName = this.searchInput.nativeElement.value;
 
       if (movieName.length < 3) {
+        if(movieName.length == 0)
+        {
+          this.searchedMovies.set(await this.movieServices.getMovies(0));
+        }
         this.resultsList.nativeElement.innerHTML = '';
         this.dropdownVisible.set(false);
         let a = this.dropdownVisible();
         let ab = this.dropdownVisible();
+        this.searchedMovies.set(await this.movieServices.getMoviesByName(movieName,this.fixedMovieNumber));
         return;
       }
       else
