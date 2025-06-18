@@ -25,7 +25,7 @@ public class MovieController {
     public String home() {
         return "Welcome to LetterBox!";
     }
-
+    
     @GetMapping("/movies/{pageNumber}")
     public List<Movie> getMovies(@PathVariable int pageNumber) {
         return movieService.getMoviesByPage(pageNumber);
