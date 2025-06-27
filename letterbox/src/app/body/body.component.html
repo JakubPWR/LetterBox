@@ -1,6 +1,7 @@
 <div id="body-display" class="body-display">
   <div class="body-sidebar" *ngIf="leftIsShown">1</div>
   <div class="body-content">
+    <p>Movies count: {{ movies.length }}</p>
     <app-movie *ngFor="let movie of movies" [movie]="movie"></app-movie>
   </div>
 </div>

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { MovieRepository } from '../../repositories/movieRepository';
 import {MovieModel} from '../../models/movieModel';
 import {SearchBarComponent} from './search-bar/search-bar.component';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,11 @@ import {SearchBarComponent} from './search-bar/search-bar.component';
   ]
 })
 export class HeaderComponent {
-  constructor(private movieRepository: MovieRepository) {}
+  constructor(private movieRepository: MovieRepository, private router: Router) {}
+
+  goToDetails() {
+    this.router.navigate(['/details']);
+  }
   @Output() showLeftEvent = new EventEmitter<boolean>();
 
   leftIsShown = false;

@@ -66,3 +66,8 @@ html, body {
   box-shadow: inset 0 2px 4px rgba(168, 25, 144, 0.7);
 }
 
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}

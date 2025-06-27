@@ -1,49 +1,48 @@
+// app.component.ts
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-  signal,
-  ViewChild
+  ViewChild,
+  AfterViewInit
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
-import { MovieModel } from '../models/movieModel';
 import { MovieServices } from '../services/movieServices';
+import { StateService } from '../services/stateService';
 
 @Component({
   selector: 'app-root',
-  imports: [BodyComponent, HeaderComponent],
+  standalone: true,
+  imports: [HeaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private movieServices: MovieServices) {}
+export class AppComponent implements AfterViewInit {
+  constructor(
+    private movieServices: MovieServices,
+    public state: StateService
+  ) {}
 
-  leftIsShown = false;
-  footerVisible = false;
-  movies = signal<MovieModel[]>([]);
-  @Input() pageNumber = signal(0);
+  @ViewChild('bodyContainer', { static: false, read: ElementRef })
+  bodyContainer!: ElementRef;
 
   onShowLeft(event: boolean) {
-    this.leftIsShown = event;
+    this.state.leftIsShown.set(event);
   }
 
   async onChangePage(event: number) {
-    this.pageNumber.set(event);
-    this.movies.set(await this.movieServices.getMovies(this.pageNumber()));
+    this.state.pageNumber.set(event);
+    const movies = await this.movieServices.getMovies(event);
+    this.state.movies.set(movies);
   }
-
-  @ViewChild('bodyContainer', { static: false, read: ElementRef }) bodyContainer!: ElementRef;
 
   async ngAfterViewInit(): Promise<void> {
     this.bodyContainer.nativeElement.addEventListener('scroll', this.onBodyScroll.bind(this));
-    this.movies.set([
-      ...this.movies(),
-      ...await this.movieServices.getMovies(this.pageNumber())
+    const movies = await this.movieServices.getMovies(this.state.pageNumber());
+    this.state.movies.set([
+      ...this.state.movies(),
+      ...movies
     ]);
   }
 
@@ -53,10 +52,10 @@ export class AppComponent {
     const scrollHeight = el.scrollHeight;
     const offsetHeight = el.offsetHeight;
 
-    this.footerVisible = scrollTop + offsetHeight >= scrollHeight - 10; // z tolerancją
+    this.state.footerVisible.set(scrollTop + offsetHeight >= scrollHeight - 10);
   }
 
-  onShowSearchedMovies($event: MovieModel[]) {
-    this.movies.set($event);
+  onShowSearchedMovies($event: any) {
+    this.state.movies.set($event);
   }
 }

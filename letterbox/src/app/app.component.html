@@ -2,11 +2,12 @@
   <app-header class="header-container"
               (showLeftEvent)="onShowLeft($event)"
               (changePageEvent)="onChangePage($event)"
-              (showSearchedMovies)="onShowSearchedMovies($event)"></app-header>
-  <app-body
-    #bodyContainer
-    class="body-container"
-    [leftIsShown]="leftIsShown"
-    [movies]="movies()"></app-body>
-  <div class="footer-container" [class.visible]="footerVisible">3</div>
+              (showSearchedMovies)="onShowSearchedMovies($event)">
+  </app-header>
+
+  <div #bodyContainer class="body-container">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="footer-container" [class.visible]="state.footerVisible()">3</div>
 </div>
