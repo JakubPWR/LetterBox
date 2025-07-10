@@ -35,4 +35,8 @@ public class MovieController {
     public CompletableFuture<List<Movie>> getMoviesByName(@PathVariable String name, @PathVariable int limit) {
         return movieService.getMovieByNameAsync(name,limit);
     }
+    @GetMapping("movie/details/{id}")
+    public CompletableFuture<Movie> getMovie(@PathVariable int id) {
+        return movieService.getMovieById(id);
+    }
 }

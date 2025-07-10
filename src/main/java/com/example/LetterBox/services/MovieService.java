@@ -9,4 +9,5 @@ public interface MovieService {
     List<Movie> getMoviesByPage(int page);
 
     CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName, int limit);
+    CompletableFuture<Movie> getMovieById(Integer movieId);
 }
