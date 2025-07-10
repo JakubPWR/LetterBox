@@ -20,3 +20,18 @@
 {
   flex: 1;
 }
+.redirect
+{
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6710C2;
+  height: 3%;
+  transition: 0.3s;
+}
+.redirect:hover
+{
+  background-color: #98179D;
+  cursor: pointer;
+}

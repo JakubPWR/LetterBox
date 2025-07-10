@@ -1,10 +1,9 @@
 <button (click)="goBack()" class="back-button" style="background: #C81D77"><-- Back</button>
-<div class="movie-details-layout">
+<div class="body-display">
   <div class="body-sidebar" *ngIf="state.leftIsShown()">
     <div (click)="goToRecommendations()" class="redirect">Recommendations system</div>
   </div>
-  <div class="movie-details-display">
-    <div>{{movie.seriesTitle}}</div>
+  <div class="recommendations-display">
+    <div>rec body</div>
   </div>
 </div>
-

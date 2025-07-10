@@ -14,6 +14,6 @@ export class MovieComponent {
   @Input() movie!: MovieModel;
   goToDetails()
   {
-    this.router.navigate(["/details"]);
+    this.router.navigate([`/details/${this.movie.id}`]);
   }
 }

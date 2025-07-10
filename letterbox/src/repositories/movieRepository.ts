@@ -23,4 +23,12 @@ export class MovieRepository {
     const movies: MovieModel[] = data.map((item: Partial<MovieModel>) => new MovieModel(item));
     return movies;
   }
+  async getMovieById(id:number):Promise<MovieModel>
+  {
+    const API_ADDRESS = this.API_MOVIE_ADDRESS+'movie/details'+`/${id}`;
+    const response: AxiosResponse = await axios.get(API_ADDRESS);
+    const data = response.data;
+    const movie : MovieModel = new MovieModel(data);
+    return movie;
+  }
 }

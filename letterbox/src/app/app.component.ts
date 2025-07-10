@@ -41,7 +41,6 @@ export class AppComponent implements AfterViewInit {
     this.bodyContainer.nativeElement.addEventListener('scroll', this.onBodyScroll.bind(this));
     const movies = await this.movieServices.getMovies(this.state.pageNumber());
     this.state.movies.set([
-      ...this.state.movies(),
       ...movies
     ]);
   }

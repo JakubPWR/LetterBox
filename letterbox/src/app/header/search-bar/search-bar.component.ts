@@ -3,6 +3,7 @@ import axios from 'axios';
 import {MovieModel} from '../../../models/movieModel';
 import { MovieServices } from '../../../services/movieServices';
 import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +12,7 @@ import {CommonModule} from '@angular/common';
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
-  constructor(private movieServices: MovieServices) {}
+  constructor(private router:Router,private movieServices: MovieServices) {}
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('resultsList') resultsList!: ElementRef<HTMLUListElement>;
   dropdownVisible = signal(false);
@@ -58,10 +59,10 @@ export class SearchBarComponent {
       const li = document.createElement('li');
       // @ts-ignore
       li.textContent = item.seriesTitle;
-      // li.onclick = () => {
-      //   this.searchInput.nativeElement.value = item.name;
-      //   ul.innerHTML = '';
-      // };
+      li.onclick = () => {
+        this.router.navigate([`/details/${item.id}`]);
+        ul.innerHTML = '';
+      };
       ul.appendChild(li);
     });
   }

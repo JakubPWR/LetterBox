@@ -13,4 +13,7 @@ export class MovieServices {
   async getMoviesByName(movieName:String, limit:number): Promise<MovieModel[]> {
     return this.movieRepository.getMoviesByName(movieName,limit);
   }
+  async getMovieById(id:number): Promise<MovieModel>{
+    return this.movieRepository.getMovieById(id);
+  }
 }

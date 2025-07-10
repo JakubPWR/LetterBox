@@ -13,6 +13,7 @@
   min-height: 300px;
   margin: 8px;
   box-sizing: border-box;
+  z-index: -1;
 }
 .movie-image
 {
