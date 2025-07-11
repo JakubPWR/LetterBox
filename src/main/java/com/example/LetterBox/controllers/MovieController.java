@@ -3,6 +3,7 @@ package com.example.LetterBox.controllers;
 import com.example.LetterBox.entities.Movie;
 import com.example.LetterBox.services.MovieService;
 
+import com.example.LetterBox.services.RecommendationService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +17,11 @@ import java.util.concurrent.CompletableFuture;
 public class MovieController {
 
     private final MovieService movieService;
+    private final RecommendationService recommendationService;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, RecommendationService recommendationService) {
         this.movieService = movieService;
+        this.recommendationService = recommendationService;
     }
 
     @GetMapping("/")
@@ -38,5 +41,9 @@ public class MovieController {
     @GetMapping("movie/details/{id}")
     public CompletableFuture<Movie> getMovie(@PathVariable int id) {
         return movieService.getMovieById(id);
+    }
+    @GetMapping("/recommend/{title}/{limit}")
+    public CompletableFuture<List<Movie>> getRecommendations(@PathVariable String title, @PathVariable int limit) {
+        return recommendationService.recommendByTitleAsync(title, limit);
     }
 }
