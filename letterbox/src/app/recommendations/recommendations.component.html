@@ -6,66 +6,19 @@
   <div class="recommendations-display">
     <div class="recommendations-body">
       <div class="recommendations-search-box">
-        <input class="recommendations-search-input" placeholder="movie name">
-        <button class="recommendations-search-button">Search</button>
+        <input (input)="onTextChange()" class="recommendations-search-input" #searchInput placeholder="movie name">
+        <ul *ngIf="recommendDropdownVisible()" #resultsList id="search-bar-movies-list" class="search-bar-dropdown"></ul>
+        <button (click)="recommendMovies()" class="recommendations-search-button">Search</button>
       </div>
       <div class="recommendations-movie-box">
-        <div class="movie-container">
+        <div *ngFor="let movie of recommendedMovies()" class="movie-container">
           <div class="movie-image">
-<!--            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>-->
+            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>
                 image
           </div>
-          <div class="movie-title">title</div>
+          <div class="movie-title">{{movie.seriesTitle}}</div>
           <div class="movie-buttons">
-            <button class="default-button">details</button>
-            <button class="default-button">2</button>
-            <button class="default-button">3</button>
-          </div>
-        </div>
-        <div class="movie-container">
-          <div class="movie-image">
-            <!--            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>-->
-            image
-          </div>
-          <div class="movie-title">title</div>
-          <div class="movie-buttons">
-            <button class="default-button">details</button>
-            <button class="default-button">2</button>
-            <button class="default-button">3</button>
-          </div>
-        </div>
-        <div class="movie-container">
-          <div class="movie-image">
-            <!--            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>-->
-            image
-          </div>
-          <div class="movie-title">title</div>
-          <div class="movie-buttons">
-            <button class="default-button">details</button>
-            <button class="default-button">2</button>
-            <button class="default-button">3</button>
-          </div>
-        </div>
-        <div class="movie-container">
-          <div class="movie-image">
-            <!--            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>-->
-            image
-          </div>
-          <div class="movie-title">title</div>
-          <div class="movie-buttons">
-            <button class="default-button">details</button>
-            <button class="default-button">2</button>
-            <button class="default-button">3</button>
-          </div>
-        </div>
-        <div class="movie-container">
-          <div class="movie-image">
-            <!--            <img class="movie-poster" [src]="movie.posterLink" alt="{{movie.posterLink}}"/>-->
-            image
-          </div>
-          <div class="movie-title">title</div>
-          <div class="movie-buttons">
-            <button class="default-button">details</button>
+            <button (click)="goToDetails(movie.id!)" class="default-button">details</button>
             <button class="default-button">2</button>
             <button class="default-button">3</button>
           </div>
