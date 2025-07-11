@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class RecommendationServiceImpl implements RecommendationService {
     private final MovieRepositoryCustomImpl movieRepo;
     private final CosineSimilarity cosineUtil = new CosineSimilarity();
+    private final MovieService movieService;
 
     @Override
     public CompletableFuture<List<Movie>> recommendByTitleAsync(String title, int limit) {
@@ -23,8 +24,8 @@ public class RecommendationServiceImpl implements RecommendationService {
                 .thenCompose(list -> {
                     if (list.isEmpty()) return CompletableFuture.completedFuture(Collections.emptyList());
                     Movie base = list.get(0);
-                    return movieRepo.findMovieByTitleAsync(title, limit)
-                            .thenApply(topMovies -> recommendSimilar(base, topMovies, limit));
+                    return movieService.getAllMoviesAsync()
+                            .thenApply(allMovies -> recommendSimilar(base, allMovies, limit));
                 });
     }
 
