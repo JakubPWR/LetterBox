@@ -27,4 +27,8 @@ public class MovieServiceImpl implements MovieService {
     public CompletableFuture<List<Movie>> getMovieByNameAsync(String movieName, int limit) {
         return movieRepository.findMovieByTitleAsync(movieName, limit);
     }
+    @Override
+    public CompletableFuture<Movie> getMovieById(Integer id) {
+        return movieRepository.findMovieById(id);
+    }
 }

@@ -35,4 +35,13 @@ public class MovieRepositoryCustomImpl implements MovieRepositoryCustom {
             return query.getResultList();
         }, executor);
     }
+    @Override
+    public CompletableFuture<Movie> findMovieById(Integer id)
+    {
+        return CompletableFuture.supplyAsync(()->{
+            TypedQuery<Movie> query = entityManager.createQuery("SELECT m FROM Movie m WHERE m.id = :id", Movie.class);
+            query.setParameter("id", id);
+            return query.getSingleResult();
+        },executor);
+    }
 }
