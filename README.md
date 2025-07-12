@@ -1,5 +1,9 @@
 
 
+
+https://github.com/user-attachments/assets/14bc2020-6332-4e87-a7b5-42cb6ec28f8a
+
+
 # 🎬 LetterBox – Movie Recommendation App
 
 **LetterBox** is a movie recommendation application that suggests similar films based on a selected title. The project was developed primarily as an algorithmic experiment, with the frontend built mostly for fun and demonstration purposes.
