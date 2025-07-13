@@ -1,5 +1,5 @@
 # You can check the working site here
-https://letterboxfront.netlify.app/recommendations
+https://letterboxfront.netlify.app
 
 
 https://github.com/user-attachments/assets/14bc2020-6332-4e87-a7b5-42cb6ec28f8a
