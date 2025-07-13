@@ -1,5 +1,16 @@
-# You can check the working site here
+# Here you can check the working site:
 https://letterboxfront.netlify.app
+
+## 🚀 Deployment
+The LetterBox app is deployed with a modern full-stack setup:
+
+Database: MySQL instance hosted on Railway to store movie data and metadata.
+
+Backend: Java Spring Boot backend deployed on Railway, connecting to the MySQL database for data access and running the recommendation algorithm.
+
+Frontend: Angular single-page application deployed on Netlify to provide a fast, serverless user interface. The frontend consumes the backend APIs deployed on Railway.
+
+This setup enables seamless communication between the Angular frontend and the Java backend over the network, with the database hosted as a cloud service.
 
 
 https://github.com/user-attachments/assets/14bc2020-6332-4e87-a7b5-42cb6ec28f8a
