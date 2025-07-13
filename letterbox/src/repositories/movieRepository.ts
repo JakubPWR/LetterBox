@@ -6,7 +6,7 @@ import { MovieModel } from '../models/movieModel';
   providedIn: 'root'
 })
 export class MovieRepository {
-  private API_MOVIE_ADDRESS = 'http://localhost:8080/';
+  private API_MOVIE_ADDRESS = 'https://letterbox-production.up.railway.app/';
 
   async getMovies(pageNumber: number): Promise<MovieModel[]> {
     const API_ADDRESS = this.API_MOVIE_ADDRESS + 'movies' + `/${pageNumber}`;

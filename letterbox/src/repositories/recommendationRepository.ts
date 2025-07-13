@@ -6,7 +6,7 @@ import { MovieModel } from '../models/movieModel';
   providedIn: 'root'
 })
 export class RecommendationRepository {
-  private API_MOVIE_ADDRESS = 'http://localhost:8080/';
+  private API_MOVIE_ADDRESS = 'https://letterbox-production.up.railway.app/';
 
   async getRecommendationsByName(movieName:String, limit:number)
   {
