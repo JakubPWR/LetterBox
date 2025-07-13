@@ -5,6 +5,7 @@ import com.example.LetterBox.repositories.MovieRepositoryCustom;
 import com.example.LetterBox.repositories.MovieRepositoryCustomImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.similarity.CosineSimilarity;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -12,11 +13,15 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class RecommendationServiceImpl implements RecommendationService {
-    private final MovieRepositoryCustomImpl movieRepo;
     private final CosineSimilarity cosineUtil = new CosineSimilarity();
+    private final MovieRepositoryCustom movieRepo;
     private final MovieService movieService;
+
+    public RecommendationServiceImpl(@Qualifier("movieRepositoryCustomImpl") MovieRepositoryCustom movieRepo, MovieService movieService) {
+        this.movieRepo = movieRepo;
+        this.movieService = movieService;
+    }
 
     @Override
     public CompletableFuture<List<Movie>> recommendByTitleAsync(String title, int limit) {
