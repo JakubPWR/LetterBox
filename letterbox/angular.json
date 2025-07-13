@@ -60,6 +60,14 @@
           },
           "defaultConfiguration": "production"
         },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "browserTarget": "letterbox:build:production",
+            "serverTarget": "letterbox:server:production",
+            "routes": [ "/", "/movies", "/recommendations" ]
+          }
+        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
